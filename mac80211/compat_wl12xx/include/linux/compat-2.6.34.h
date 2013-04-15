@@ -193,8 +193,6 @@ static inline void device_unlock(struct device *dev)
 	.prod_id_hash = { 0, 0, (vh3), 0 }, }
 #endif
 
-#define rcu_dereference_check(p, c) rcu_dereference(p)
-
 /**
  *	sysfs_attr_init - initialize a dynamically allocated sysfs attribute
  *	@attr: struct attribute to initialize
@@ -273,8 +271,6 @@ static inline int usb_disable_autosuspend(struct usb_device *udev)
 #define rcu_dereference_protected(p, c) (p)
 #define rcu_access_pointer(p)   ACCESS_ONCE(p)
 
-#define rcu_dereference_raw(p)	rcu_dereference(p)
-
 #define KEY_WPS_BUTTON		0x211	/* WiFi Protected Setup key */
 
 /*
@@ -287,10 +283,6 @@ static inline int usb_disable_autosuspend(struct usb_device *udev)
 #define round_up(x, y) ((((x)-1) | __round_mask(x, y))+1)
 #define round_down(x, y) ((x) & ~__round_mask(x, y))
 
-static inline int rcu_read_lock_held(void)
-{
-	return 1;
-}
 
 #endif /* (LINUX_VERSION_CODE < KERNEL_VERSION(2,6,34)) */
 
